@@ -1,0 +1,35 @@
+//KC03GB4A JOB ,'Adam Wykle',MSGCLASS=H
+//STEP1 EXEC PGM=ASSIST
+//STEPLIB DD DSN=KC02293.ASSIST.LOADLIB,DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSIN DD *
+********************************************
+* ASSIGNMENT 1 PART C
+*
+* NAME:  ADAM WYKLE
+*
+* Register Usage
+*
+*  4     Total
+*  5     Counter
+* 15     Base register
+********************************************
+MAIN     CSECT
+         USING MAIN,15
+         L 7,40(0,15)                     LOAD FIRST INTO R7
+         L 8,44(0,15)                     LOAD SECOND INTO R8
+         SR 7,8                           SUBSTRACT R8 FROM R7
+         ST 7,48(0,15)                    STORE R7 INTO DIFF
+         L 6,40(0,15)                     LOAD FIRST INTO R6
+         A 6,44(0,15)                    ADD R6 TO SECOND
+         ST 6,52(0,15)                   STORE SUM IN R6
+         XDUMP 48(0,15)
+         XDUMP 52(0,15)
+         BR    14
+FIRST    DC F'103'
+SECOND   DC F'68'
+DIFF     DS F
+SUM      DS F
+         END   MAIN
+/*
+//
